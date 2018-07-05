@@ -22,22 +22,22 @@ export default class LineChart extends Vue {
   @Prop({ default: true })  private autoResize!: boolean
 
   private chart: any = null
-  private __resizeHanlder: any = null
+  private resizeHanlder: any = null
 
   private mounted(): void {
     this.initChart()
     if (this.autoResize) {
-      this.__resizeHanlder = debounce(() => {
+      this.resizeHanlder = debounce(() => {
         if (this.chart) {
           this.chart.resize()
         }
       }, 100)
-      window.addEventListener('resize', this.__resizeHanlder)
+      window.addEventListener('resize', this.resizeHanlder)
     }
 
     // 监听侧边栏的变化
     const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    sidebarElm.addEventListener('transitionend', this.__resizeHanlder)
+    sidebarElm.addEventListener('transitionend', this.resizeHanlder)
   }
 
   private beforeDestroy(): void {
@@ -45,11 +45,11 @@ export default class LineChart extends Vue {
       return
     }
     if (this.autoResize) {
-      window.removeEventListener('resize', this.__resizeHanlder)
+      window.removeEventListener('resize', this.resizeHanlder)
     }
 
     const sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    sidebarElm.removeEventListener('transitionend', this.__resizeHanlder)
+    sidebarElm.removeEventListener('transitionend', this.resizeHanlder)
 
     this.chart.dispose()
     this.chart = null
@@ -61,30 +61,30 @@ export default class LineChart extends Vue {
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         boundaryGap: false,
         axisTick: {
-          show: false
-        }
+          show: false,
+        },
       },
       grid: {
         left: 10,
         right: 10,
         bottom: 20,
         top: 30,
-        containLabel: true
+        containLabel: true,
       },
       tooltip: {
         trigger: 'axis',
         axisPointer: {
-          type: 'cross'
+          type: 'cross',
         },
-        padding: [5, 10]
+        padding: [5, 10],
       },
       yAxis: {
         axisTick: {
-          show: false
-        }
+          show: false,
+        },
       },
       legend: {
-        data: ['expected', 'actual']
+        data: ['expected', 'actual'],
       },
       series: [{
         name: 'expected', itemStyle: {
@@ -92,15 +92,15 @@ export default class LineChart extends Vue {
             color: '#FF005A',
             lineStyle: {
               color: '#FF005A',
-              width: 2
-            }
-          }
+              width: 2,
+            },
+          },
         },
         smooth: true,
         type: 'line',
         data: expectedData,
         animationDuration: 2800,
-        animationEasing: 'cubicInOut'
+        animationEasing: 'cubicInOut',
       },
       {
         name: 'actual',
@@ -111,17 +111,17 @@ export default class LineChart extends Vue {
             color: '#3888fa',
             lineStyle: {
               color: '#3888fa',
-              width: 2
+              width: 2,
             },
             areaStyle: {
-              color: '#f3f8ff'
-            }
-          }
+              color: '#f3f8ff',
+            },
+          },
         },
         data: actualData,
         animationDuration: 2800,
-        animationEasing: 'quadraticOut'
-      }]
+        animationEasing: 'quadraticOut',
+      }],
     })
   }
 
