@@ -6,7 +6,8 @@
 import { debounce } from '@/utils'
 import echarts from 'echarts'
 import 'echarts/theme/macarons'
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
+import { LineChartName } from '../types'
 
 interface ChartData {
   expectedData?: any
@@ -16,13 +17,18 @@ interface ChartData {
 @Component
 export default class LineChart extends Vue {
   @Prop(Object)  private chartData!: ChartData
-  @Prop({ default: 'chart' })  private classNmae!: string
+  @Prop({ default: 'chart' })  private className!: string
   @Prop({ default: '100%' })  private width!: string
   @Prop({ default: '350px' })  private height!: string
   @Prop({ default: true })  private autoResize!: boolean
 
   private chart: any = null
   private resizeHanlder: any = null
+
+  @Watch('chartData', { deep: true })
+  private onChartDataChange(val: ChartData) {
+    this.setOptions(val)
+  }
 
   private mounted(): void {
     this.initChart()

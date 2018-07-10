@@ -9,10 +9,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "node"    ],
+      "node",
+      "webpack",
+      "webpack-env"
+    ],
     "paths": {
       "@/*": [
         "src/*"

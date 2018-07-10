@@ -1,14 +1,25 @@
 <template>
   <div class="dashboard-editor-container">
+    <panel-group @handleSetLineChartData="handleSetLineChartData"></panel-group>
+
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData"></line-chart>
+    </el-row>
+
+    <el-row :gutter="32">
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <raddar-chart></raddar-chart>
+        </div>
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
-import { LineChart } from './components'
 import { Component, Vue } from 'vue-property-decorator'
+import { LineChart, PanelGroup, RaddarChart } from './components'
+import { LineChartName } from './types'
 
 interface LineChartInterface {
   newVisitis: object
@@ -16,8 +27,6 @@ interface LineChartInterface {
   purchases: object
   shoppings: object
 }
-
-type lineChartName = 'newVisitis' | 'messages' | 'purchases' | 'shoppings'
 
 const lineChartData: LineChartInterface = {
   newVisitis: {
@@ -41,11 +50,13 @@ const lineChartData: LineChartInterface = {
 @Component({
   components: {
     LineChart,
+    PanelGroup,
+    RaddarChart,
   },
 })
 export default class Dashboard extends Vue {
   private lineChartData: any = lineChartData.newVisitis
-  private handleSetLineChartData(type: lineChartName): void {
+  private handleSetLineChartData(type: LineChartName): void {
     this.lineChartData = lineChartData[type]
   }
 }
