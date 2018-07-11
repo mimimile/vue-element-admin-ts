@@ -12,13 +12,29 @@
           <raddar-chart></raddar-chart>
         </div>
       </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <pie-chart></pie-chart>
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="8">
+        <div class="chart-wrapper">
+          <bar-chart></bar-chart>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-row :gutter="8">
+      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 5}" style="margin-bottom:30px;">
+        <todo-list></todo-list>
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { LineChart, PanelGroup, RaddarChart } from './components'
+import { LineChart, PanelGroup, RaddarChart, PieChart, BarChart, TodoList } from './components'
 import { LineChartName } from './types'
 
 interface LineChartInterface {
@@ -52,6 +68,9 @@ const lineChartData: LineChartInterface = {
     LineChart,
     PanelGroup,
     RaddarChart,
+    PieChart,
+    BarChart,
+    TodoList,
   },
 })
 export default class Dashboard extends Vue {

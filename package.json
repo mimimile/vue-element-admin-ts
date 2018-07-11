@@ -7,7 +7,6 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
-  "typings": "types/index.d.ts",
   "dependencies": {
     "@types/echarts": "^0.0.13",
     "echarts": "^4.1.0",

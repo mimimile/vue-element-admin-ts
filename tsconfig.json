@@ -27,6 +27,9 @@
       "dom",
       "dom.iterable",
       "scripthost"
+    ],
+    "typeRoots": [
+      "src/types/*"
     ]
   },
   "include": [
