@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@types/echarts": "^0.0.13",
+    "@types/mockjs": "^1.0.1",
+    "axios": "^0.18.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.1",
+    "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.16",
     "vue-class-component": "^6.0.0",

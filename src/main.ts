@@ -9,6 +9,7 @@ import App from './App.vue'
 import router from './router/index'
 
 import './icons' // icon
+import './mock' // simulation data
 
 Vue.use(Element)
 

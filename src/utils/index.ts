@@ -36,3 +36,12 @@ export function debounce<F extends Procedure>(
     }
   } as any
 }
+
+export function param2Obj(url: string): object {
+  const search = url
+  if (!search) {
+    return {}
+  }
+  const result = decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"')
+  return JSON.parse('{"' + result + '"}')
+}
