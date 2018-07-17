@@ -31,13 +31,16 @@
       <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 5}" style="margin-bottom:30px;">
         <todo-list></todo-list>
       </el-col>
+      <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 5}" style="margin-bottom:30px;" >
+        <box-card></box-card>
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { LineChart, PanelGroup, RaddarChart, PieChart, BarChart, TodoList, TransactionTable } from './components'
+import { LineChart, PanelGroup, RaddarChart, PieChart, BarChart, TodoList, TransactionTable, BoxCard } from './components'
 import { LineChartName } from './types'
 
 interface LineChartInterface {
@@ -75,6 +78,7 @@ const lineChartData: LineChartInterface = {
     BarChart,
     TodoList,
     TransactionTable,
+    BoxCard,
   },
 })
 export default class Dashboard extends Vue {

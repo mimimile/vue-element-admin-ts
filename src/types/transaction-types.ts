@@ -10,4 +10,3 @@ export interface ListData {
   price: number
   status: ListDataStatus
 }
-
