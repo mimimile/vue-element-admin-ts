@@ -15,6 +15,7 @@
     "element-ui": "^2.4.1",
     "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.0",
+    "screenfull": "^3.3.2",
     "vue": "^2.5.16",
     "vue-class-component": "^6.0.0",
     "vue-count-to": "^1.0.13",

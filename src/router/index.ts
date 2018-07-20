@@ -12,7 +12,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: Layout,
       redirect: 'dashboard',
       children: [
@@ -20,6 +19,7 @@ export default new Router({
           path: 'dashboard',
           component: () => import('@/views/dashboard/index.vue'),
           name: 'dashboard',
+          meta: { title: 'dashboard' },
         },
       ],
     },
