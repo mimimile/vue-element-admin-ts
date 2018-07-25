@@ -2,19 +2,21 @@
   <div class="app-wrapper">
     <div class="main=container">
       <navbar></navbar>
+      <tags-view></tags-view>
       <app-main></app-main>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Navbar, AppMain } from './components'
+import { Navbar, AppMain, TagsView } from './components'
 import { Vue } from 'vue-property-decorator'
 
 const Layout = Vue.extend({
   components: {
     Navbar,
     AppMain,
+    TagsView,
   },
 })
 export default Layout
