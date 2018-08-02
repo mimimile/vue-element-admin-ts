@@ -19,7 +19,8 @@ const app = {
       } else {
         Cookies.set('sidebarStatus', '0')
       }
-      state.sidebar.opened = state.sidebar.opened ? 1 : 0
+
+      state.sidebar.opened = state.sidebar.opened ? 0 : 1
       state.sidebar.withoutAnimation = false
     },
     CLOSE_SIDEBAR: (state: App, withoutAnimation: boolean) => {

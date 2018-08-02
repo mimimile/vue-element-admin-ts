@@ -1,5 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
+    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="isActive"></hamburger>
+
     <breadcrumb class="breadcrumb-container"></breadcrumb>
 
     <div class="right-menu">
@@ -32,15 +34,27 @@
 import { Component, Vue } from 'vue-property-decorator'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
+import Hamburger from '@/components/Hamburger/index.vue'
 
 @Component({
   components: {
     Breadcrumb,
     Screenfull,
+    Hamburger,
   },
 })
 export default class Navbar extends Vue {
-  
+  get isActive() {
+    return this.sidebar.opened ? true : false
+  }
+
+  get sidebar() {
+    return this.$store.state.app.sidebar
+  }
+
+  private toggleSideBar() {
+    this.$store.dispatch('toggleSideBar')
+  }
 }
 </script>
 

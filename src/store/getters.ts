@@ -6,6 +6,7 @@ const getters = {
   roles: (state: State) => state.user.roles,
   visitedViews: (state: State) => state.tagsView.visitedViews,
   cachedViews: (state: State) => state.tagsView.cachedViews,
+  permissionRouters: (state: State) => state.permission.addRouters,
 }
 
 export default getters

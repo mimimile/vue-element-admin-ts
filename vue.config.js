@@ -7,6 +7,9 @@ function resolve (dir) {
 
 module.exports = {
   lintOnSave: false,
+  configureWebpack: config => {
+    config.resolve.extensions = ['.js', '.vue', '.json', '.ts', '.tsx']
+  },
   chainWebpack: config => {
     config.module
       .rule('vue')

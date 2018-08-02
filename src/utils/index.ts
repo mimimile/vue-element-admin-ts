@@ -45,3 +45,20 @@ export function param2Obj(url: string): object {
   const result = decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"')
   return JSON.parse('{"' + result + '"}')
 }
+
+function extend<T>(to: T, from: T) {
+  for (const key in from) {
+    if (key) { to[key] = from[key] }
+  }
+  return to
+}
+
+export function toObject<T>(arr: T[]) {
+  const res = {}
+  for (const i of arr) {
+    if (i) {
+      extend(res, i)
+    }
+  }
+  return res
+}
