@@ -26,61 +26,68 @@
 
 <script lang="ts">
 import { isvalidUsername } from '@/utils/validate.ts'
-import { Vue } from 'vue-property-decorator'
+import { UserInfo } from '@/types/vuex'
+import { Vue, Component } from 'vue-property-decorator'
 
-const Login = Vue.extend({
-  data() {
-    const validateUsername = (rule: any, value: string, callback: (a?: Error) => void) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
-      } else {
-        callback()
-      }
+@Component
+export default class Login extends Vue {
+  private validateUsername = (rule: any, value: string, callback: (a?: Error) => void) => {
+    if (!isvalidUsername(value)) {
+      callback(new Error('Please enter the correct user name'))
+    } else {
+      callback()
     }
-    const validatePassword = (rule: any, value: string, callback: (a?: Error) => void) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
-      } else {
-        callback()
-      }
+  }
+  private validatePassword = (rule: any, value: string, callback: (a?: Error) => void) => {
+    if (value.length < 6) {
+      callback(new Error('The password can not be less than 6 digits'))
+    } else {
+      callback()
     }
-    return {
-      loginForm: {
-        username: 'admin',
-        password: '1111111',
-      },
-      loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
-      },
-      passwordType: 'password',
-      loading: false,
-      showDialog: false,
+  }
+
+  private loginForm: UserInfo = {
+    username: 'admin',
+    password: '1111111',
+  }
+
+  private loginRules = {
+    username: [{ required: true, trigger: 'blur', validator: this.validateUsername }],
+    password: [{ required: true, trigger: 'blur', validator: this.validatePassword }],
+  }
+
+  private passwordType = 'password'
+
+  private loading = false
+
+  private showDialog = false
+
+  private showPwd() {
+    if (this.passwordType === 'password') {
+      this.passwordType = ''
+    } else {
+      this.passwordType = 'password'
     }
-  },
-  methods: {
-    showPwd(): void {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
-      }
-    },
-    handleLogin() {
-      const el: any = this.$refs.loginForm
-      el.validate((valid: boolean) => {
-        if (valid) {
-          this.loading = true
+  }
+
+  private handleLogin() {
+    const el: any = this.$refs.loginForm
+    el.validate((valid: boolean) => {
+      if (valid) {
+        this.loading = true
+        this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+          this.loading = false
           this.$router.push({ path: '/' })
-        } else {
-          console.warn('error submit!!')
-          return false
-        }
-      })
-    },
-  },
-})
-export default Login
+        }).catch(() => {
+          this.loading = false
+        })
+      } else {
+        console.warn('error submit!!')
+        return false
+      }
+    })
+  }
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

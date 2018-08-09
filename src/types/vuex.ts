@@ -14,10 +14,27 @@ export interface AppSidebar {
   withoutAnimation: boolean
 }
 
+
+export type userType = 'admin' | 'editor'
+export interface UserInfo {
+  username: userType
+  password: string
+}
+
+export interface UserSetting {
+  articlePlatfrom: any[]
+}
+
 export interface User {
-  avatar: string
+  user: string
+  status: string
+  code: string
+  token: string
   name: string
-  roles: string
+  avatar: string
+  introduction: string
+  roles: string[]
+  setting: UserSetting
 }
 
 export interface Permission {
