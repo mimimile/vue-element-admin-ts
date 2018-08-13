@@ -38,7 +38,7 @@ export function debounce<F extends Procedure>(
 }
 
 export function param2Obj(url: string): object {
-  const search = url
+  const search = url.split('?')[1]
   if (!search) {
     return {}
   }

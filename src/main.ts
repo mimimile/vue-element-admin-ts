@@ -12,6 +12,7 @@ import router from './router'
 import store from './store'
 
 import './icons' // icon
+import '@/modules/permission' // permission control
 import './mock' // simulation data
 
 Vue.use(Element)

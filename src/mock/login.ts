@@ -1,7 +1,12 @@
 import { param2Obj } from '@/utils'
 import { userType } from '@/types/vuex'
+import { UserInfo } from '@/types/api'
 
-const userMap = {
+interface UserMap {
+  [type: string]: UserInfo
+}
+
+const userMap: UserMap = {
   admin: {
     roles: ['admin'],
     token: 'admin',
@@ -18,6 +23,8 @@ const userMap = {
   },
 }
 
+const typeList = ['admin', 'editor']
+
 export default {
   loginByUsername: (config: any) => {
     const { username } = JSON.parse(config.body)
@@ -25,7 +32,7 @@ export default {
   },
   getUserInfo: (config: any) => {
     const { token } = param2Obj(config.url) as any
-    if (token !== 'admin' || 'editor') {
+    if (typeList.indexOf(token) < 0) {
       return false
     }
     const infoName = token as userType

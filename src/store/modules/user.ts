@@ -2,15 +2,16 @@ import { User, UserSetting, UserInfo, userType } from '@/types/vuex'
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { Commit } from 'vuex'
+import { UserInfo as UserInfoApi } from '@/types/api'
 
 const user = {
   state: {
     user: '',
     status: '',
     code: '',
-    token: '',
-    name: '123',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    token: getToken(),
+    name: '',
+    avatar: '',
     introduction: '',
     roles: [],
     setting: {
@@ -55,6 +56,41 @@ const user = {
           resolve()
         }).catch((error) => {
           rejects(error)
+        })
+      })
+    },
+
+    // 登出
+    FedLogOut(context: { commit: Commit }) {
+      return new Promise((resolve) => {
+        context.commit('SET_TOKEN', '')
+        removeToken()
+        resolve()
+      })
+    },
+
+    // 获取用户信息
+    GetUserInfo(context: { commit: Commit, state: User }) {
+      return new Promise((resolve, reject) => {
+        getUserInfo(context.state.token).then((response) => {
+          if (!response.data) {
+            reject('error')
+          }
+          const data: UserInfoApi = response.data
+
+          const commit = context.commit
+          if (data.roles && data.roles.length > 0) {
+            commit('SET_ROLES', data.roles)
+          } else {
+            reject('getInfo: roles must be a non-null array !')
+          }
+
+          commit('SET_NAME', data.name)
+          commit('SET_AVATAR', data.avatar)
+          commit('SET_INTRODUCTION', data.introduction)
+          resolve(response)
+        }).catch((error) => {
+          reject(error)
         })
       })
     },

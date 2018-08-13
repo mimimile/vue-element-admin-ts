@@ -32,7 +32,6 @@ export default class Breadcrumb extends Vue {
       matched = [{ path: '/dashboard', meta: { title: 'dashboard' }}].concat(matched)
     }
     this.levelList = matched
-    console.warn('this.levelList', this.levelList)
   }
 }
 </script>

@@ -16,6 +16,7 @@
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",
     "normalize.css": "^8.0.0",
+    "nprogress": "^0.2.0",
     "path": "^0.12.7",
     "resize-observer-polyfill": "^1.5.0",
     "screenfull": "^3.3.2",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^2.1.0",
+    "@types/nprogress": "^0.0.29",
     "@types/screenfull": "^3.3.1",
     "@types/webpack": "^4.4.5",
     "@types/webpack-env": "^1.13.6",

@@ -36,8 +36,6 @@ export default class Scrollbar extends Vue {
       const gutterWidth = `-${gutter}px`
       const gutterStyle = `margin-button: ${gutterWidth}; margin-right: ${gutterWidth}`
 
-      console.warn('wrapClass', this.wrapClass)
-
       if (Array.isArray(this.wrapStyle)) {
         style = toObject(this.wrapStyle)
         style.marginRight = style.marginBottom = gutterWidth
