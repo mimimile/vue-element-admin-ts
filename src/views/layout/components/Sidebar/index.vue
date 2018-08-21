@@ -26,11 +26,11 @@ import SidebarItem from './SiderbarItem.vue'
 })
 export default class Sidebar extends Vue {
   get permissionRouters() {
-    return this.$store.state.permission.addRouters
+    return this.$store.getters.permissionRouters
   }
 
   get sidebar() {
-    return this.$store.state.app.sidebar
+    return this.$store.getters.sidebar
   }
 
   get isCollapse() {

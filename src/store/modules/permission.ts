@@ -4,6 +4,7 @@ import { RouteConfigPlus, Meta, Role } from '@/types/route'
 import { Commit } from 'vuex'
 
 function hasPermission(route: RouteConfigPlus, roles: Role[]) {
+  console.warn('route', route)
   if (route.meta && route.meta.roles) {
     return roles.some((role) => {
       return route.meta && route.meta.roles ? route.meta.roles.indexOf(role) >= 0 : false
@@ -34,7 +35,7 @@ function filterAsyncRouter(routers: RouteConfigPlus[], roles: Role[]) {
 const permission = {
   state: {
     routers: constantRouterMap,
-    addRouters: constantRouterMap,
+    addRouters: [],
   },
   mutations: {
     SET_ROUTERS: (state: Permission, routers: RouteConfigPlus[]) => {

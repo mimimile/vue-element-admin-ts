@@ -36,6 +36,7 @@ router.beforeEach((to, from, next) => {
             const nextRouter = { ...to, replace: true }
             next(nextRouter)
           }).catch((err) => {
+            console.warn('Verification failed, please login again')
             store.dispatch('FedLogOut').then(() => {
               // Message.error(err || 'Verification failed, please login again')
               next({ path: '/' })

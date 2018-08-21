@@ -48,6 +48,7 @@ export interface TagsView {
 }
 
 export interface State {
+  app: App
   user: User
   permission: Permission
   tagsView: TagsView
