@@ -6,6 +6,8 @@ import Login from '@/views/login/index.vue'
 import Layout from '@/views/layout/index.vue'
 import { RouteConfigPlus } from '../types/route'
 
+import componentsRouter from './modules/components'
+
 Vue.use(Router)
 
 export const constantRouterMap: RouteConfigPlus[] = [
@@ -41,4 +43,6 @@ export default new Router({
   routes: constantRouterMap,
 })
 
-export const asyncRouterMap = []
+export const asyncRouterMap = [
+  componentsRouter,
+]
